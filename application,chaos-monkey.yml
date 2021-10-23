@@ -1,0 +1,11 @@
+# Chaos Engineering
+management.endpoint.chaosmonkey.enabled: true
+chaos:
+  monkey:
+    enabled: true
+    watcher:
+      component: false
+      controller: false
+      repository: false
+      rest-controller: false
+      service: false

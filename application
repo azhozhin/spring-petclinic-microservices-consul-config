@@ -25,9 +25,6 @@ spring:
       allow-override: false
       # Override configuration with any local property source
       override-none: false
-    consul:
-      discovery:
-        instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
 
 # Spring Boot 1.5 makes actuator secure by default
 management.security.enabled: false

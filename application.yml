@@ -8,9 +8,14 @@ server:
 
 # embedded database init, supports mysql too trough the 'mysql' spring profile
 spring:
-  datasource:
-    schema: classpath*:db/hsqldb/schema.sql
-    data: classpath*:db/hsqldb/data.sql
+  sql:
+    init:
+      schema-locations: classpath*:db/hsqldb/schema.sql
+      data-locations: classpath*:db/hsqldb/data.sql
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
   sleuth:
     sampler:
       probability: 1.0
@@ -20,10 +25,9 @@ spring:
       allow-override: false
       # Override configuration with any local property source
       override-none: false
-  jpa:
-    open-in-view: false
-    hibernate:
-      ddl-auto: none
+    consul:
+      discovery:
+        instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
 
 # Spring Boot 1.5 makes actuator secure by default
 management.security.enabled: false
@@ -54,8 +58,3 @@ management:
       prometheus:
         enabled: true
 
-spring:
-  cloud:
-    consul:
-      discovery:
-        instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}

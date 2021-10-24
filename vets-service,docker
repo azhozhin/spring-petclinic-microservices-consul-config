@@ -1,9 +1,0 @@
-﻿spring:
-  zipkin:
-    baseUrl: http://tracing-server:9411
-server:
-  port: 8083
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://discovery-server:8761/eureka/
